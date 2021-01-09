@@ -3,7 +3,7 @@ require_relative "abyme_builder"
 module Abyme
   module ViewHelpers
 
-    # ABYMIZE
+    # abyme_for
 
     # this helper will generate the top level wrapper markup
     # with the bare minimum html attributes (data-controller="abyme")
@@ -23,12 +23,12 @@ module Abyme
     # set the default number of blank fields to display
 
     # - partial (String)
-    # to customize the partial path by default #abymize will expect 
+    # to customize the partial path by default #abyme_for will expect 
     # a partial to bbe present in views/abyme
 
     # - Exemple
 
-    # <%= abymize(:tasks, f, limit: 3) do |abyme| %>
+    # <%= abyme_for(:tasks, f, limit: 3) do |abyme| %>
     #   ...
     # <% end %>
 
@@ -38,7 +38,7 @@ module Abyme
     #   ...
     # </div>
 
-    def abymize(association, form, options = {}, &block)
+    def abyme_for(association, form, options = {}, &block)
       content_tag(:div, data: { controller: 'abyme', limit: options[:limit], min_count: options[:min_count] }, id: "abyme--#{association}") do
         if block_given?
           yield(Abyme::AbymeBuilder.new(
@@ -62,7 +62,7 @@ module Abyme
     # then a hash of options.
 
     # - Exemple
-    # <%= abymize(:tasks, f) do |abyme| %>
+    # <%= abyme_for(:tasks, f) do |abyme| %>
     #   <%= abyme.new_records %>
     #   ...
     # <% end %>
@@ -85,7 +85,7 @@ module Abyme
     # :end is the default value
 
     # - partial (String)
-    # to customize the partial path by default #abymize will expect 
+    # to customize the partial path by default #abyme_for will expect 
     # a partial to bbe present in views/abyme
 
     # - fields_html (Hash)
@@ -128,7 +128,7 @@ module Abyme
     # then a hash of options.
 
     # - Exemple
-    # <%= abymize(:tasks, f) do |abyme| %>
+    # <%= abyme_for(:tasks, f) do |abyme| %>
     #   <%= abyme.records %>
     #   ...
     # <% end %>
@@ -151,7 +151,7 @@ module Abyme
     # ex: order: { created_at: :desc }
 
     # - partial (String)
-    # to customize the partial path by default #abymize will expect 
+    # to customize the partial path by default #abyme_for will expect 
     # a partial to bbe present in views/abyme
 
     # - fields_html (Hash)
